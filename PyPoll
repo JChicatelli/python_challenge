@@ -1,1 +1,40 @@
+# Dependencies
+import csv
 
+# Files to Load / Output 
+file_to_load = "election_data.csv"
+file_to_output = "election_analysis.txt"
+
+# Total Vote Counter
+total_votes = 0
+
+# Candidate Options and Vote Counters
+candidate_options = []
+candidate_votes = {}
+
+# Winning Candidate and Winning Count Tracker
+winning_candidate = ""
+winning_count = 0
+
+# Read the csv and convert it into a list of dictionaries
+with open(file_to_load) as election_data:
+    reader = csv.DictReader(election_data)
+
+    # For each row ...
+    for row in reader:
+
+        # Add to the total vote count
+        total_votes = total_votes + 1
+
+        # Extract the candiate name from each row
+        candidate_name = row["Candidate"]
+
+        # If the candidate does not match any existing candidate...
+    
+        if candidate_name not in candidate_options:
+
+            # Add it to the list of candidates in the running
+            candidate_options.append(candidate_name)
+
+            # And begin tracking that candidate's voter count
+            candidate_votes[candidate_name] = 0
